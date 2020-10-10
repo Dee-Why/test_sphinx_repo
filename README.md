@@ -2,4 +2,6 @@
 I'm learning how to use sphinx in this repo.
 
 ## first step
-read the file source/tutorial.md
+read the file docs/source/tutorial.md
+
+or you can just view docs/build/html/index.html in your web browser.
