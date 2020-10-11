@@ -87,6 +87,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#id1">写在前面</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python">配置python环境</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#repo">现在配置你的项目repo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#read-the-docs">和 read the docs 联动</a></li>
 </ul>
 </li>
 </ul>
@@ -169,21 +170,21 @@
 </li>
 </ul>
 <p>created in 2020/10/11</p>
-<p>我必须承认这套sphinx和read the docs的联动我只在windows平台上实现了，在MAC上出现了奇怪的问题</p>
-<p>所以我目前的解决方法是先用windows生成相关的文件夹，然后把这个文件夹（docs）复制到我想要加入文档的repo里面</p>
+<p>我必须承认这套sphinx和read the docs的联动在MAC上出现了奇怪的问题</p>
+<p>所以我目前在MAC的解决方法是先用windows生成相关的文件夹，然后把这个文件夹（docs）复制到我想要加入文档的repo里面</p>
 <p>基于这一解决方案，下面将给出详细的配置步骤</p>
 </div>
 <div class="section" id="python">
 <h2>配置python环境<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>下载这个repo，并且创建一个用来生成文档的python虚拟环境（本经验使用的是python3.8.5）</p></li>
+<li><p>下载我放在项目组TAPD里的这个repo，并且创建一个用来生成文档的python虚拟环境（本经验使用的是python3.8.5）</p></li>
 <li><p>activate你想要用来编辑项目文档的python虚拟环境，并在本项目根目录下<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="repo">
 <h2>现在配置你的项目repo<a class="headerlink" href="#repo" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>把本repo的/docs文件夹完整地复制到你的repo的根目录下（注意必须是根目录，否则无法和read the docs联动，此后描述中使用‘/’表示项目根目录）</p></li>
+<li><p>把本repo的/docs文件夹完整地复制到你的repo的master分支的根目录下（注意必须是master分支，且必须是根目录，否则无法和read the docs联动，此后描述中使用‘/’表示项目根目录）（尤其是github更新后新创建的repo主分支默认名为main，特别注意！）</p></li>
 <li><p>（此后操作均在自己的repo里面进行）</p></li>
 <li><p>进入docs文件夹，make.bat和makefile是已经用sphinx生成好的工具，不要触碰，/docs/build/是sphinx用于输出的文件夹，里面的内容不要手动修改</p></li>
 <li><p>进入/docs/source/文件夹，应该有：</p>
@@ -193,8 +194,18 @@
 <li><p>以及一系列自己写的<em>内容文件</em>（就是一堆markdown）</p></li>
 </ul>
 </li>
+<li><p>修改conf.py里的下述内容</p>
+<ul>
+<li><p>project 现在是’learn_sphinx’，请把他改成你的项目名称</p></li>
+<li><p>cpoyright 请改成你的年份和id</p></li>
+<li><p>author改成你的id</p></li>
+<li><p>release改成你的项目版本号（人为规定即可）</p></li>
+<li><p>其余保持不变</p></li>
+</ul>
+</li>
 <li><p>当你想要添加新的<em>内容文件</em>时，需要：</p>
 <ul>
+<li><p>把新添加的 .md 结尾的文件放到/docs/source/ 文件夹里</p></li>
 <li><p>使用vscode（反正只要不要用windows自带的记事本就行）打开文件/docs/index.rst，在第一长串等号下面是用rst语法描述的文档结构（就是那个toctree缩进里），目前文档结构里只有一个<em>内容文件</em>（就是本文件tutorial.md）如果以后想要向文档中加入更多<em>内容文件</em>，就仿照着在下面列出即可</p></li>
 <li><p>每次修改docs/index.rst之后，把它复制一份放到/docs/source/里面，替代掉老旧的/docs/source/index.rst</p></li>
 </ul>
@@ -206,6 +217,15 @@
 </ul>
 </li>
 <li><p>成功完成后可以在docs/build/html/里面看到生成的html，为了更为优雅的体验，可以使用自己的浏览器打开其中的index.html进行阅读</p></li>
+</ul>
+</div>
+<div class="section" id="read-the-docs">
+<h2>和 read the docs 联动<a class="headerlink" href="#read-the-docs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>去read the docs注册自己的read the docs账户（这里推荐使用自己的github账户来注册）</p></li>
+<li><p>把自己的read the docs账户和github账户关联成功后，可以跟随read the docs 网页提示import自己的git repository到自己的read the docs repository</p></li>
+<li><p>只要你的项目根目录下有按照前文搞定的docs文件夹，那么稍等片刻你就可以进入你的read the docs repository，在右上角会有一个绿色的按钮（View Docs），点开就是python官方风格的文档页面了，并且这个文档已经托管在readthedocs的服务器上，所有人都可以阅读。</p></li>
+<li><p>此后每当你更新你的github repo时，readthedocs会自动同步，完全不需要你担心。</p></li>
 </ul>
 </div>
 </div>

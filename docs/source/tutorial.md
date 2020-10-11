@@ -26,7 +26,7 @@ created in 2020/10/11
 
 ## 现在配置你的项目repo
 
-* 把本repo的/docs文件夹完整地复制到你的repo的根目录下（注意必须是根目录，否则无法和read the docs联动，此后描述中使用‘/’表示项目根目录）
+* 把本repo的/docs文件夹完整地复制到你的repo的master分支的根目录下（注意必须是master分支，且必须是根目录，否则无法和read the docs联动，此后描述中使用‘/’表示项目根目录）（尤其是github更新后新创建的repo主分支默认名为main，特别注意！）
 
 * （此后操作均在自己的repo里面进行）
 
